@@ -57,9 +57,12 @@ class MIMICXrayDataSet(Dataset):
         # Read Iamge label Caption
         frontal_img_name = self.data[index][0].split('g_')[0] + 'g'
         frontal_img = Image.open(frontal_img_name).convert('RGB')
+        ##Caption
+
+        ##Gaze point
         if self.transform:
             frontal_img = self.transform(frontal_img)
-        return frontal_img, self.data[index][1]
+        return frontal_img, Caption, Gaze_point
 
 
 train_dataset = MIMICXrayDataSet(image_dir, data_json, locate_data_json, vocab, transform)
@@ -83,7 +86,7 @@ def train(epoch):
     #CLIP_model.train()
     Predictor_model.train()
     total_loss = 0
-    for i, (images, captions) in enumerate(tqdm(train_loader)):
+    for i, (images, captions,GazePoint) in enumerate(tqdm(train_loader)):
         images = images.to(device)
         captions = clip.tokenize(captions).to(device)
         
