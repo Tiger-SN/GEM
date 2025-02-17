@@ -10,23 +10,12 @@ Official repository of the MICCAI 2024 paper "# gem:GEM: Context-Aware Gaze Esti
 
 # Citation
 @inproceedings{liu2024gem,
+
   title={GEM: Context-Aware Gaze EstiMation with Visual Search Behavior Matching for Chest Radiograph},
+  
   author={Liu, Shaonan and Chen, Wenting and Liu, Jie and Luo, Xiaoling and Shen, Linlin},
   booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
   pages={525--535},
   year={2024},
   organization={Springer}
 }
-(Xie, Allaire, and Grolemund 2018)
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-
-<div id="ref-xie2018" class="csl-entry">
-
-Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. *R Markdown: The
-Definitive Guide*. Boca Raton, Florida: Chapman; Hall/CRC.
-<https://bookdown.org/yihui/rmarkdown>.
-
-</div>
-
-</div>
