@@ -17,3 +17,16 @@ Official repository of the MICCAI 2024 paper "# gem:GEM: Context-Aware Gaze Esti
   year={2024},
   organization={Springer}
 }
+(Xie, Allaire, and Grolemund 2018)
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-xie2018" class="csl-entry">
+
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. *R Markdown: The
+Definitive Guide*. Boca Raton, Florida: Chapman; Hall/CRC.
+<https://bookdown.org/yihui/rmarkdown>.
+
+</div>
+
+</div>
