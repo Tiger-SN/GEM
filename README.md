@@ -8,7 +8,11 @@ Official repository of the MICCAI 2024 paper "# gem:GEM: Context-Aware Gaze Esti
 
 ![sota_result_3](https://github.com/user-attachments/assets/a4629129-3246-4b28-9b88-596eaaaccf4b)
 
-# Citation
+## Citation
+
+If you found this repository, or its related paper useful for your research, you can cite this work as:
+
+```
 @inproceedings{liu2024gem,
 
   title={GEM: Context-Aware Gaze EstiMation with Visual Search Behavior Matching for Chest Radiograph},
@@ -19,3 +23,4 @@ Official repository of the MICCAI 2024 paper "# gem:GEM: Context-Aware Gaze Esti
   year={2024},
   organization={Springer}
 }
+```
