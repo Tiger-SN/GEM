@@ -87,14 +87,14 @@ def train(epoch):
         images = images.to(device)
         captions = clip.tokenize(captions).to(device)
         
-        # 前向传播
+      
         image_features, text_features, x_text = CLIP_model(images, captions)
         Landmarks_Pred, out_heatmap_Graph, _, _, _ = Predictor_model(image_features, text_features, x_text, captions)
         
-        # 计算损失
+ 
         loss = Regress_loss(Landmarks_Pred, Heatmap_landmarks) + Graph_loss(out_heatmap_Graph, Diag_Relation) * 0.1
         
-        # 反向传播
+
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -107,7 +107,7 @@ def train(epoch):
     avg_loss = total_loss / len(train_loader)
     logging.info(f'Epoch:{epoch:02d} -> Average Loss:{avg_loss:.4f}')
 
-# 主训练循环
+
 start_epoch = 0
 max_epoch = 10000
 for epoch in range(start_epoch, max_epoch):
