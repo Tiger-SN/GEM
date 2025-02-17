@@ -14,9 +14,7 @@ If you found this repository, or its related paper useful for your research, you
 
 ```
 @inproceedings{liu2024gem,
-
   title={GEM: Context-Aware Gaze EstiMation with Visual Search Behavior Matching for Chest Radiograph},
-  
   author={Liu, Shaonan and Chen, Wenting and Liu, Jie and Luo, Xiaoling and Shen, Linlin},
   booktitle={International Conference on Medical Image Computing and Computer-Assisted Intervention},
   pages={525--535},
