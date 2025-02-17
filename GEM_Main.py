@@ -19,24 +19,21 @@ from clip.models.utils.hungarian import hungarian
 from transformers import AdamW
 from utils import cosine_lr_schedule
 
-# 设置日志
+# Log
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# 设置CUDA设备
+
 os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# 数据路径
+# Data Path
 data_json = './Eay_Gaze/Eay_gaze_Caption_Train.json'
 locate_data_json = './Eay_Gaze/Eay_gaze_Gaze_Train.json'
 data_json = './Eay_Gaze/Eay_gaze_Caption_Val.json'
 locate_data_json = './Eay_Gaze/Eay_gaze_Gaze_Val.json'
 
-# 加载词汇表
-with open(vocab_path, 'rb') as f:
-    vocab = pickle.load(f)
 
-# 数据预处理
+# Data processing
 transform = transforms.Compose([
     transforms.Resize(256),
     transforms.RandomCrop(224),
@@ -45,7 +42,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
 ])
 
-# 数据集类
+
 class MIMICXrayDataSet(Dataset):
     def __init__(self, image_dir, data_json, locate_data_json, transform=None):
         self.image_dir = image_dir
@@ -57,26 +54,27 @@ class MIMICXrayDataSet(Dataset):
         return len(self.data)
 
     def __getitem__(self, index):
-        # 读取图像和标签
+        # Read Iamge label Caption
         frontal_img_name = self.data[index][0].split('g_')[0] + 'g'
         frontal_img = Image.open(frontal_img_name).convert('RGB')
         if self.transform:
             frontal_img = self.transform(frontal_img)
         return frontal_img, self.data[index][1]
 
-# 创建数据集和数据加载器
+
 train_dataset = MIMICXrayDataSet(image_dir, data_json, locate_data_json, vocab, transform)
 val_dataset = MIMICXrayDataSet(image_dir, Val_data_json, '', vocab, transform)
 
 train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True, num_workers=4)
 val_loader = DataLoader(val_dataset, batch_size=16, shuffle=False, num_workers=4)
 
-# 加载CLIP模型
+
 CLIP_model, preprocess = clip.load('RN50', device)
-Predictor_model = prediction_MLP_Regression().to(device)
+##Load GEM model
+Predictor_model = GEM_model().to(device)
 Decoder_model = Decoder(vocab_size=227, encoder_length=CFG.num_patches, dim=256, num_heads=8, num_layers=6).to(device)
 
-# 优化器
+
 optimizer = AdamW(Predictor_model.parameters(), lr=1e-6)
 scheduler = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
 
